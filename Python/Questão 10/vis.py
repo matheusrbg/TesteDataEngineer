@@ -9,7 +9,7 @@ def makeDic(s):
             dic[date] = 1
     return dic
 
-with open("casosTesteQ10.txt", "r") as f:
+with open("casos de teste\caso3.txt", "r") as f:
     content = f.read()
     lines = content.split('\n')
 

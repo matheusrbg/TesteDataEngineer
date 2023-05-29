@@ -1,4 +1,6 @@
 import pandas as pd
+from pandas import json_normalize
+import json
 import pyodbc as db
 import sys
 
@@ -9,10 +11,10 @@ with open(mypasswordFile, 'r') as f:
     pwd = f.read()
 
 # Importando Json  
-df = pd.read_json(path)
-
-print(df)
-
+with open(path) as f:
+    content = json.load(f)
+    df = json_normalize(content['procedimentos'])
+    
 # Conectando ao Server SQL
 conn = db.connect(
     'DRIVER=MySQL ODBC 8.0 ANSI Driver;'

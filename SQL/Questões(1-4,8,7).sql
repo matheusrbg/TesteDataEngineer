@@ -33,7 +33,7 @@ SELECT *
 FROM stg_prontuario.paciente 
 WHERE
     (cpf, dt_atualizacao) IN ( 
-        SELECT cpf, MIN(dt_atualizacao)
+        SELECT cpf, MAX(dt_atualizacao)
         FROM stg_prontuario.paciente
         GROUP BY cpf
         HAVING COUNT(cpf) > 1
@@ -41,14 +41,14 @@ WHERE
 
 --Sétima questão
 CREATE TABLE stg_prontuario.atendimentos(  
-    id int NOT NULL AUTO_INCREMENT COMMENT 'Identificador do atendimento',
+    id int NOT NULL COMMENT 'Identificador do atendimento',
     hosp VARCHAR(1) COMMENT 'Hospital do atendimento',
     id_pac int COMMENT "Identificador do paciente",
     id_med int COMMENT "Identificador do médico",
     tipo VARCHAR(1) COMMENT 'Tipo de atendimento',
     dt_atendimento TIMESTAMP COMMENT "Data e hora de atendimento",
     PRIMARY KEY(id,hosp,id_pac,id_med)
-) COMMENT 'Criação da tabela paciente';
+) COMMENT 'Criação da tabela atendimentos';
 
 CREATE TABLE stg_prontuario.diagnosticos(  
     id_diag int NOT NULL COMMENT 'Identificador do diagnostico',
@@ -60,7 +60,7 @@ CREATE TABLE stg_prontuario.diagnosticos(
     descricao VARCHAR(255) COMMENT "Descrição do diagnostico",
     Foreign Key (id_atend,hosp,id_pac,id_med) REFERENCES atendimentos(id,hosp,id_pac,id_med),
     PRIMARY KEY(id_diag,id_atend,hosp,id_pac,id_med)
-) COMMENT 'Criação da tabela paciente';
+) COMMENT 'Criação da tabela diagnosticos';
 
 --Oitava questão
 SELECT AVG(atendimentos)

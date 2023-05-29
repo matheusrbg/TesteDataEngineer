@@ -1,0 +1,4 @@
+prescrição=a, estoque=b 
+prescrição=aa, estoque=b 
+prescrição=aa, estoque=aab 
+prescrição=aba, estoque=cbaa 

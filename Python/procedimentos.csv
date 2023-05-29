@@ -1,0 +1,4 @@
+procedimento_id,name_procedimento,id_paciente,id_medico,hosp
+1,"checkup",1,2,"a"
+2,"checkup",2,2,"a"
+3,"checkup",1,1,"b" 
